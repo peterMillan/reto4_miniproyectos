@@ -1,28 +1,32 @@
-import micropip
-import asyncio
-from js import fetch, console
+  from js import console
+  import requests
+  from bs4 import BeautifulSoup
 
-async def setup():
-    try:
-        # Instalar módulos necesarios si no están instalados
-        await micropip.install("beautifulsoup4")
+        def scrape_h1(url):
+            response = requests.get(url)
+            if response.status_code == 200:
+                html_content = response.content
+                soup = BeautifulSoup(html_content, 'html.parser')
+                h1_elements = soup.find_all('h1')
+                h1_texts = [h1.get_text() for h1 in h1_elements]
+                return h1_texts
+            else:
+                console.log(f'Error al realizar la solicitud. Código de estado: {response.status_code}')
+                return None
 
-        # URL de ejemplo y URL del proxy
-        url = 'https://example.com/'
-        proxy_url = 'https://cors-anywhere.herokuapp.com/' + url  # Ejemplo de proxy CORS Anywhere
+        def run_scraping(event):
+            url = 'https://crepesywaffles.com/menu'
+            h1_texts = scrape_h1(url)
+            result_div = Element("result")
+            if h1_texts:
+                result_html = "<h2>Encabezados h1 encontrados:</h2><ul>"
+                for text in h1_texts:
+                    result_html += f"<li>{text}</li>"
+                result_html += "</ul>"
+                result_div.element.innerHTML = result_html
+            else:
+                result_div.element.innerHTML = "No se encontraron encabezados h1 o hubo un error."
 
-        # Realizar la solicitud usando fetch de JavaScript con el proxy
-        response = await fetch(proxy_url)
-
-        # Verificar si la solicitud fue exitosa
-        if response.ok:
-            text = await response.text()
-            console.log(f'Success! Response text: {text}')
-        else:
-            console.log(f'Request failed. Status code: {response.status}')
-
-    except Exception as e:
-        console.error(f'Error during setup: {e}')
-
-# Ejecutar el setup
-asyncio.ensure_future(setup())
+        # Añadir el evento al botón
+        button = Element("scrape-button")
+        button.element.addEventListener("click", run_scraping)

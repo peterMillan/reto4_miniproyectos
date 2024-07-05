@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu USSD </title>
+    <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css">
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="https://pyscript.net/latest/pyscript.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Agendar una Cita</h1>
+        <div id="ussd-display">
+            <p id="ussd-message"></p>
+            <input type="text" id="ussd-input" autofocus>
+            <button id="ussd-submit">Enviar</button>
+        </div>
+    </div>
+    <py-script src="script.py"></py-script>
+    <!-- <script src="script.js"></script> -->
+</body>
+</html>

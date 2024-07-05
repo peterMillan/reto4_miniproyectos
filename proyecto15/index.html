@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HangMan Ahorcado</title>
+    <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css">
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="https://pyscript.net/latest/pyscript.js"></script>
+
+</head>
+
+<body>
+    <div class="titulo"><h1>Ahorcado </h1></div>
+    <div class="game-container">
+        <div class="Hangman">
+
+      
+        <svg class="figure-container">
+
+            <!--contenedor-->
+            <line x1="60" y1="20" x2="140" y2="20" />
+            <line x1="140" y1="20" x2="140" y2="50" />
+            <line x1="60" y1="20" x2="60" y2="230" />
+            <line x1="20" y1="230" x2="100" y2="230" />
+
+            <!--Cabeza-->
+            <circle cx="140" cy="70" r="20" class="figure-part" />
+            <!--Cuerpo  error  circle, debe ser line-->
+            <line x1="140" y1="90" x2="140" y2="150" class="figure-part" />
+            <!--Brazos-->
+            <line x1="140" y1="120" x2="120" y2="100" class="figure-part" />
+            <line x1="140" y1="120" x2="160" y2="100" class="figure-part" />
+            <!--Piernas-->
+            <line x1="140" y1="150" x2="120" y2="180" class="figure-part" />
+            <line x1="140" y1="150" x2="160" y2="180" class="figure-part" />
+        </svg>
+    </div>
+        <!--Para mostrar el mensaje de letra equivocada-->
+        <div class="wrong-letters-container">
+            <div id="wrong-letters"></div>
+        </div>
+
+        <div class="word" id="word"></div>
+
+    <!--Notificacion-->
+
+        <div class="notification-container hidden" id="notification-container">
+            <p>Letra repetida, ingresa una letra diferente</p>
+        </div>
+    </div>
+
+    <!--Contenedor para el mensaje final-->
+
+    <div class="popup-container" id="popup-container">
+        <div class="popup">
+            <h2 id="final-message"></h2>
+            <button id="play-button">Juega Nuevamente</button>
+        </div>
+    </div>
+
+
+    <py-script src="script.py"></py-script>
+</body>
+
+</html>
